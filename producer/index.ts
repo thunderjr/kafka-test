@@ -1,13 +1,14 @@
-import { BROKER_URL } from '../constants';
-import { Producer } from './Producer';
+import { KafkaJsProducer } from './kafkajs-producer';
 
-const producer = new Producer(BROKER_URL);
+const producer = new KafkaJsProducer();
 
-setInterval(() => {
-  producer.isReady && producer.produce({
+setInterval(async () => {
+  const result = await producer.produce({
     topic: 'test-topic',
-    value: 'Flavio Marques - Hello from Kafka'
+    value: 'F ' + Date.now()
   });
+
+  console.log({result})
 }, 1000);
 
 

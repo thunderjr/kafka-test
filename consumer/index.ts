@@ -1,11 +1,11 @@
 import { BROKER_URL } from "../constants";
-import { Consumer } from "./Consumer";
+import { KafkaJsConsumer } from "./kafkajs-consumer";
 
-new Consumer({
+const consumer = new KafkaJsConsumer({
   brokerUrl: BROKER_URL,
   handlers: {
     'test-topic': (data) => {
-      console.log(`[${new Date(data.timestamp)}] ${data.value.toString()}`);
+      console.log(`[${new Date().toLocaleDateString()}] ${data.value.toString()}`);
       console.log('\n')
     }
   }
