@@ -3,7 +3,6 @@ export interface IHandlers<T> {
 }
 
 export interface ConsumerParams {
-  brokerUrl: string;
   handlers: IHandlers<any>
 }
 

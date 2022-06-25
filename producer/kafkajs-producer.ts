@@ -19,6 +19,14 @@ export class KafkaJsProducer implements IProducer<Producer> {
 
     this.connect();
 
+    this.producer.on('producer.connect', () => {
+      this.isReady = true;
+    });
+
+    this.producer.on('producer.disconnect', () => {
+      this.isReady = false;
+    });
+
     this.producer.on('producer.network.request_timeout', e => {
       console.log(e)
     });
@@ -27,14 +35,6 @@ export class KafkaJsProducer implements IProducer<Producer> {
   public async connect() {
     try {
       await this.producer.connect();
-
-      this.producer.on('producer.connect', () => {
-        this.isReady = true;
-      });
-  
-      this.producer.on('producer.disconnect', () => {
-        this.isReady = false;
-      });
     } catch (err) {
       console.log(`[Producer] Connection error...`);
       console.log(err);

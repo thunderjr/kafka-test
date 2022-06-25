@@ -1,5 +1,4 @@
 import { Kafka, Consumer, EachMessagePayload } from 'kafkajs';
-import { BROKER_URL } from '../constants';
 import { KafkaClient } from '../shared/kafkajs-client';
 import { ConsumerParams, IConsumer } from "./IConsumer";
 
@@ -9,7 +8,7 @@ export class KafkaJsConsumer implements IConsumer<Consumer> {
   private kafkaInstance: Kafka;
   
   constructor(params: ConsumerParams) {
-    this.kafkaInstance = KafkaClient.getInstance('client');
+    this.kafkaInstance = KafkaClient.getInstance();
 
     this.consumer = this.kafkaInstance.consumer({
       groupId: `kafka-${Date.now()}`
