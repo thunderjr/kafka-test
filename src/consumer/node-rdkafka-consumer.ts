@@ -4,11 +4,11 @@ import { ConsumerParams, IConsumer } from './IConsumer';
 export class NodeRdKafkaConsumer implements IConsumer<KafkaConsumer> {
   consumer: KafkaConsumer;
 
-  public async connect({ brokerUrl, handlers }: ConsumerParams) {
+  public async connect({ handlers }: ConsumerParams) {
     this.consumer = new KafkaConsumer({
       'group.id': `kafka-${Date.now()}`,
-      'metadata.broker.list': brokerUrl,
-      'bootstrap.servers': brokerUrl
+      'metadata.broker.list': 'brokerUrl',
+      'bootstrap.servers': 'brokerUrl'
     }, {});
 
     this.consumer.connect({}, (err, result) => {

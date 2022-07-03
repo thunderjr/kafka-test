@@ -4,7 +4,7 @@ const producer = new KafkaJsProducer();
 
 setInterval(async () => {
   const result = await producer.produce({
-    topic: 'test-topic',
+    topic: 'message.sms',
     value: 'F ' + Date.now()
   });
 

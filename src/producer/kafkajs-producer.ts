@@ -28,7 +28,7 @@ export class KafkaJsProducer implements IProducer<Producer> {
     });
 
     this.producer.on('producer.network.request_timeout', e => {
-      console.log(e)
+      console.warn('[Producer] Connection timeout...', e);
     });
   }
 
